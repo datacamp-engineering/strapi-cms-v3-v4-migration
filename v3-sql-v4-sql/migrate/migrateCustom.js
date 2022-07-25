@@ -1,4 +1,4 @@
-// Tables that should not be proccessed later
+// Tables that should not be processed later
 const processedTables = [];
 
 const fs = require("fs");
@@ -21,11 +21,16 @@ files.forEach((file) => {
 });
 
 // Custom migration function, handles DB reads and writes
-async function migrateTables() {
+async function migrateTables(phase = "default") {
   for (const customMigration of customMigrations) {
     console.log("Migration custom ", customMigration.name);
 
-    await customMigration.migrateTables();
+    const customMigrationTargetPhase = customMigration.phase || "default";
+
+    if (customMigrationTargetPhase === phase) {
+      await customMigration.migrateTables();
+    }
+
     processedTables.push(...customMigration.processedTables);
   }
 }

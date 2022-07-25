@@ -67,13 +67,13 @@ async function migrate() {
     (table) => !processedTables.includes(table)
   );
 
-  await migrateComponents.migrateTables(unprocessedTables);
-
   processedTables.push(...migrateComponents.processedTables);
 
   await migrateModels(
     tables.filter((table) => !processedTables.includes(table))
   );
+
+  await migrateComponents.migrateTables(unprocessedTables);
 
   if (isPGSQL) {
     await dbV4.raw("set session_replication_role to DEFAULT;");
@@ -82,6 +82,8 @@ async function migrate() {
   if (isMYSQL) {
     await dbV4.raw("SET FOREIGN_KEY_CHECKS=1;");
   }
+
+  await migrateCustom.migrateTables("post-migration");
 }
 
 module.exports = {
