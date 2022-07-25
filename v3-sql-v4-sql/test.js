@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const {
   migrateTables,
-} = require("./customMigrations/16-business_demo_pages_components");
+} = require("./customMigrations/18-components_blog_trending");
 
 async function f() {
   await migrateTables();
