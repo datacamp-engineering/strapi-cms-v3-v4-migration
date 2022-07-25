@@ -1,8 +1,6 @@
 require("dotenv").config();
 
-const {
-  migrateTables,
-} = require("./customMigrations/10-cheat_sheets__sub_categories");
+const { migrateTables } = require("./customMigrations/11-tutorials__authors");
 
 async function f() {
   await migrateTables();
