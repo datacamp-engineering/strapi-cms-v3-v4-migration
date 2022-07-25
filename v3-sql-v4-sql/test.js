@@ -1,8 +1,6 @@
 require("dotenv").config();
 
-const {
-  migrateTables,
-} = require("./customMigrations/18-components_blog_trending");
+const { migrateTables } = require("./customMigrations/19-user-stories");
 
 async function f() {
   await migrateTables();
