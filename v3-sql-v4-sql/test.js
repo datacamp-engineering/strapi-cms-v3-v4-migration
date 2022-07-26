@@ -1,11 +1,9 @@
 require("dotenv").config();
 
-const {
-  migrateTables,
-} = require("./customMigrations/26-components_page_publication_galleries_components");
+const { migrateCustom } = require("./migrate/migrateCustom");
 
 async function f() {
-  await migrateTables();
+  await migrateCustom.migrateTables();
 
   process.exit();
 }
