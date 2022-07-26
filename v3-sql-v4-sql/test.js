@@ -2,7 +2,7 @@ require("dotenv").config();
 
 const {
   migrateTables,
-} = require("./customMigrations/20-components_page_page_header_with_two_columns_and_insights");
+} = require("./customMigrations/21-components_page_marketo_form_components_components");
 
 async function f() {
   await migrateTables();
